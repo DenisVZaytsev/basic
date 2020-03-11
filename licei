@@ -1,0 +1,144 @@
+DATA 5,143,5,105,110,150,140,142,140,152,185,140,185,173,0
+DATA 110,150,110,190,0                                              
+DATA 185,140,175,130,137,139,0
+DATA 140,142,117,130,110,150,0
+DATA 117,130,23,93,5,105,0
+DATA 23,93,88,75,112,88,55,105,0
+DATA 112,88,112,123,107,125,0
+DATA 112,117,146,106,146,96,112,107,0
+DATA 146,96,136,92,112,99,0
+DATA 146,106,150,108,150,55,80,30,80,75,0
+DATA 150,55,180,46,106,20,80,30,0
+DATA 170,95,190,90,225,105,0
+DATA 225,117,170,95,170,113,225,138,225,82,0
+DATA 150,108,163,104,170,107,0
+DATA 163,104,163,97,170,95,0
+DATA 163,97,170,100,0
+DATA 180,46,180,92,0
+DATA 225,82,300,115,300,175,225,139,0
+DATA 225,82,255,75,335,105,300,115,0
+DATA 300,175,320,170
+
+SCREEN 1
+LINE (185, 173)-(110, 190)
+FOR i = 1 TO 69
+'FOR u = 1 TO 50: NEXT u
+READ x
+IF x = 0 THEN
+READ x, y: PSET (x, y)
+ELSE
+READ y
+LINE -(x, y)
+END IF
+NEXT
+
+
+FOR t = 154 TO 176 STEP 11
+x = 110: y = t: i = 0
+DO UNTIL i = 8: x = x - 12: y = y - 5: i = i + 1
+LINE (x, y)-(x + 5, y + 2)
+LINE -(x + 5, y + 9)
+LINE -(x, y + 7)
+LINE -(x, y + 2)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+NEXT t
+
+
+FOR t = 62 TO 84 STEP 11
+x = 154: y = t: i = 0
+DO UNTIL i = 6: x = x - 12: y = y - 4: i = i + 1
+LINE (x, y)-(x + 5, y + 2)
+LINE -(x + 5, y + 9)
+LINE -(x, y + 7)
+LINE -(x, y + 2)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+NEXT t
+
+FOR t = 120 TO 153 STEP 11
+x = 302: y = t: i = 0
+DO UNTIL i = 6: x = x - 12: y = y - 5: i = i + 1
+LINE (x, y)-(x + 5, y + 2)
+LINE -(x + 5, y + 9)
+LINE -(x, y + 7)
+LINE -(x, y + 2)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+NEXT t
+
+x = 225: y = 126: i = 0
+DO UNTIL i = 4: x = x - 12: y = y - 5: i = i + 1
+LINE (x, y)-(x + 5, y + 2)
+LINE -(x + 5, y + 9)
+LINE -(x, y + 7)
+LINE -(x, y + 2)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+
+FOR t = 157 TO 179 STEP 11
+x = 104: y = t: i = 0
+DO UNTIL i = 2: x = x + 12: y = y - 3: i = i + 1
+LINE (x, y)-(x + 5, y - 2)
+LINE -(x + 5, y + 5)
+LINE -(x, y + 7)
+LINE -(x, y)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+NEXT t
+
+x = 128: y = 174: i = 0
+DO UNTIL i = 4: x = x + 12: y = y - 3: i = i + 1
+LINE (x, y)-(x + 5, y - 2)
+LINE -(x + 5, y + 5)
+LINE -(x, y + 7)
+LINE -(x, y)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+
+FOR t = 63 TO 85 STEP 11
+x = 143: y = t: i = 0
+DO UNTIL i = 2: x = x + 12: y = y - 3: i = i + 1
+LINE (x, y)-(x + 5, y - 2)
+LINE -(x + 5, y + 5)
+LINE -(x, y + 7)
+LINE -(x, y)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+NEXT t
+
+FOR t = 122 TO 155 STEP 11
+x = 292: y = t: i = 0
+DO UNTIL i = 2: x = x + 12: y = y - 3: i = i + 1
+LINE (x, y)-(x + 5, y - 2)
+LINE -(x + 5, y + 5)
+LINE -(x, y + 7)
+LINE -(x, y)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+NEXT t
+
+DATA 70,105,80,102,90,98,100,95,90,110,100,106,100,116
+FOR i = 1 TO 7
+READ x, y
+LINE (x, y)-(x + 5, y - 2)
+LINE -(x + 5, y + 5)
+LINE -(x, y + 7)
+LINE -(x, y)
+PAINT (x + 1, y + 2), 9, 15
+NEXT i
+
+
+x = 128: y = 160: i = 0
+DO UNTIL i = 4: x = x + 12: y = y - 3: i = i + 1
+LINE (x, y)-(x + 5, y - 2)
+LINE -(x + 5, y + 8)
+LINE -(x, y + 10)
+LINE -(x, y)
+PAINT (x + 1, y + 2), 9, 15
+LOOP
+
+SUB derewo (x, y)
+'line(x,y),2
+
+END SUB
