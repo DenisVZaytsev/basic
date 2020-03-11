@@ -1,0 +1,609 @@
+DECLARE SUB hod2 (i!, e!)
+DECLARE SUB hod1 (i!, e!)
+DECLARE SUB zast2 ()
+DECLARE SUB zastawka ()
+DECLARE SUB hod ()
+DECLARE SUB pri ()
+DECLARE SUB zapmen (nom!, poz!)
+DECLARE SUB game ()
+DECLARE SUB srv (x!)
+DECLARE SUB srvn (x!)
+DECLARE SUB fivp (x!, y!)
+DECLARE SUB fiv (x!, y!, zv!, zn!)
+DECLARE SUB g2 (x!, y!)
+DECLARE SUB g3 (x!, y!)
+DECLARE SUB g6 (x!, y!)
+DECLARE SUB v1 (x!, y!)
+DECLARE SUB v2 (x!, y!)
+DECLARE SUB v3 (x!, y!)
+DECLARE SUB v4 (x!, y!)
+DECLARE SUB v5 (x!, y!)
+DECLARE SUB v6 (x!, y!)
+DECLARE SUB zaput (ba!())
+DECLARE SUB fig (x!, y!, zl!, zp!)
+DATA 0,36,3,31,36,3,62,36,3,93,36,3,124,36,3,155,36,3,186,36,3,217,36,3,248,36,3,279,36,3,294,51,1,259,66,4,224,66,4,189,66,4,154,66,4,119,66,4,84,66,4,49,66,4
+DATA 49,81,2,64,96,3,95,96,3,126,96,3,157,96,3,188,96,3,219,96,3,250,96,3,281,96,1,266,126,4
+vniz:
+DATA 0,86,1,0,117,1,16,132,3,47,132,3,78,132,3,109,132,3,140,132,3,171,132,3,202,132,3,233,132,3,264,132,3
+DATA 279,97,2,244,97,4,209,97,4,174,97,4,139,97,4,104,97,4,69,97,4,34,97,4
+DATA 34,62,2,49,62,3,80,62,3,111,62,3,142,62,3,173,62,3,204,62,3,235,62,3,266,62,3
+
+COMMON SHARED xv(), yv(), xn(), yn(), v(), n(), me(), ko(), ba(), kom, kok, fvv, fvn, kob, qv, qn, en, re
+
+'ПРОГРАММА ДОМИНО
+RANDOMIZE TIMER - 4000
+DIM ba(1 TO 28, 1 TO 2), ko(1 TO 20, 1 TO 2), me(1 TO 20, 1 TO 2), xv(28), xn(28), yv(28), yn(28), v(28), n(28)
+SCREEN 1
+CALL zastawka
+CALL zast2
+
+
+
+beg:
+re = 0
+en = 0
+k = 0
+r = 0
+e = 0
+kom = 0
+kok = 0
+fvv = 0
+fvn = 0
+kob = 0
+qv = 0
+qn = 0
+
+RESTORE
+FOR i = 0 TO 6
+FOR i1 = k TO 6
+e = e + 1
+ba(e, 1) = i
+ba(e, 2) = i1
+NEXT i1
+k = k + 1
+NEXT i
+CALL zaput(ba())
+FOR i = 1 TO 7
+me(i, 1) = ba(29 - i, 1)
+me(i, 2) = ba(29 - i, 2)
+ko(i, 1) = ba(22 - i, 1)
+ko(i, 2) = ba(22 - i, 2)
+NEXT i
+
+FOR i = 1 TO 28
+READ xv(i), yv(i), v(i)
+NEXT
+
+FOR i = 1 TO 28
+READ xn(i), yn(i), n(i)
+NEXT
+SCREEN 1
+
+CALL fiv(0, 55, ba(14, 1), ba(14, 2))
+FOR i = 0 TO 136 STEP 21
+r = r + 1
+CALL fiv(i, 159, me(r, 1), me(r, 2))
+CALL fivp(i, 0)
+NEXT i
+CALL game
+q$ = INPUT$(1)
+GOTO beg
+
+SUB fig (x, y, zl, zp)
+LINE (x, y + 1)-(x + 15, y + 1), 0
+LINE (x, y + 2)-(x + 16, y + 2), 0
+LINE (x, y + 3)-(x + 17, y + 3), 0
+LINE (x + 1, y)-(x + 1, y + 15), 0
+LINE (x + 2, y)-(x + 2, y + 16), 0
+LINE (x + 3, y)-(x + 3, y + 17), 0
+
+
+LINE (x, y)-(x, y + 15)
+LINE -(x + 30, y + 15)
+LINE -(x + 30, y)
+LINE -(x, y)
+LINE (x + 15, y)-(x + 15, y + 15)
+LINE (x + 30, y)-(x + 33, y + 3)
+LINE -(x + 33, y + 18)
+LINE -(x + 30, y + 15)
+LINE (x + 33, y + 18)-(x + 3, y + 18)
+LINE -(x, y + 15)
+
+t = zl: r = 1
+po:
+SELECT CASE t
+CASE 1
+CALL v1(x, y)
+CASE 2
+CALL v2(x, y)
+CASE 3
+CALL v3(x, y)
+CASE 4
+CALL v4(x, y)
+CASE 5
+CALL v5(x, y)
+CASE 6
+CALL v6(x, y)
+CASE ELSE
+END SELECT
+IF r = 1 THEN r = 0: x = x + 15: t = zp: GOTO po
+END SUB
+
+SUB fiv (x, y, zv, zn)
+LINE (x + 1, y)-(x + 1, y + 15), 0
+LINE (x + 2, y)-(x + 2, y + 16), 0
+LINE (x + 3, y)-(x + 3, y + 17), 0
+
+LINE (x, y + 1)-(x + 15, y + 1), 0
+LINE (x, y + 2)-(x + 16, y + 2), 0
+LINE (x, y + 3)-(x + 17, y + 3), 0
+
+LINE (x, y)-(x, y + 30)
+LINE -(x + 15, y + 30)
+LINE -(x + 15, y)
+LINE -(x, y)
+LINE (x, y + 15)-(x + 15, y + 15)
+LINE (x + 15, y)-(x + 18, y + 3)
+LINE -(x + 18, y + 33)
+LINE -(x + 15, y + 30)
+LINE (x + 18, y + 33)-(x + 3, y + 33)
+LINE -(x, y + 30)
+
+t = zv: r = 1
+por:
+SELECT CASE t
+CASE 1
+CALL v1(x, y)
+CASE 2
+CALL g2(x, y)
+CASE 3
+CALL g3(x, y)
+CASE 4
+CALL v4(x, y)
+CASE 5
+CALL v5(x, y)
+CASE 6
+CALL g6(x, y)
+CASE ELSE
+END SELECT
+IF r = 1 THEN r = 0: y = y + 15: t = zn: GOTO por
+
+END SUB
+
+SUB fivp (x, y)
+LINE (x, y)-(x, y + 30)
+LINE -(x + 15, y + 30)
+LINE -(x + 15, y)
+LINE -(x, y)
+LINE (x + 15, y)-(x + 18, y + 3)
+LINE -(x + 18, y + 33)
+LINE -(x + 15, y + 30)
+LINE (x + 18, y + 33)-(x + 3, y + 33)
+LINE -(x, y + 30)
+END SUB
+
+SUB g2 (x, y)
+LINE (x + 2, y + 10)-(x + 5, y + 13), , BF
+LINE (x + 10, y + 2)-(x + 13, y + 5), , BF
+END SUB
+
+SUB g3 (x, y)
+LINE (x + 2, y + 10)-(x + 5, y + 13), , BF
+LINE (x + 10, y + 2)-(x + 13, y + 5), , BF
+LINE (x + 6, y + 6)-(x + 9, y + 9), , BF
+END SUB
+
+SUB g6 (x, y)
+LINE (x + 2, y + 11)-(x + 4, y + 13), , BF
+LINE (x + 11, y + 2)-(x + 13, y + 4), , BF
+LINE (x + 2, y + 2)-(x + 4, y + 4), , BF
+LINE (x + 11, y + 11)-(x + 13, y + 13), , BF
+LINE (x + 2, y + 6)-(x + 4, y + 9), , BF
+LINE (x + 11, y + 6)-(x + 13, y + 9), , BF
+END SUB
+
+SUB game
+fvv = ba(14, 1)
+fvn = ba(14, 2)
+
+re = 2
+
+kom = 7
+kok = 7
+kob = 13
+w:
+CALL zapmen(nom, poz)
+IF en = 1 THEN EXIT SUB
+IF poz = 1 THEN l = 2 ELSE l = 1
+
+IF me(nom, poz) = fvv THEN
+ fvv = me(nom, l)
+ qv = qv + 1
+ SELECT CASE v(qv)
+ CASE 1
+ CALL fiv(xv(qv), yv(qv), me(nom, poz), me(nom, l))
+ CASE 2
+ CALL fiv(xv(qv), yv(qv), me(nom, l), me(nom, poz))
+ CASE 3
+ CALL fig(xv(qv), yv(qv), me(nom, poz), me(nom, l))
+ CASE 4
+ CALL fig(xv(qv), yv(qv), me(nom, l), me(nom, poz))
+ CASE ELSE
+ END SELECT
+ELSE
+ fvn = me(nom, l)
+ qn = qn + 1
+ SELECT CASE n(qn)
+ CASE 1
+ CALL fiv(xn(qn), yn(qn), me(nom, poz), me(nom, l))
+ CASE 2
+ CALL fiv(xn(qn), yn(qn), me(nom, l), me(nom, poz))
+ CASE 3
+ CALL fig(xn(qn), yn(qn), me(nom, poz), me(nom, l))
+ CASE 4
+ CALL fig(xn(qn), yn(qn), me(nom, l), me(nom, poz))
+CASE ELSE
+END SELECT
+END IF
+kom = kom - 1
+
+'ПЕРЕРАБОТКУ МАСИВА
+IF kom + 1 = nom THEN GOTO kon
+FOR i = nom TO kom
+me(i, 1) = me(i + 1, 1): me(i, 2) = me(i + 1, 2)
+NEXT i
+kon:
+CALL pri
+'ХОД КОМПЬЮТЕРА
+CALL hod
+
+
+
+'ПРОВЕРКА НА ОКОНЧАНИЕ
+IF en = 1 THEN : SOUND 1500, 3: SOUND 500, 7: s$ = INPUT$(1): CLS : SCREEN 0: LOCATE 13, 15: PRINT "РЫБА": EXIT SUB
+IF kok = 0 AND kom = 0 THEN : BEEP: s$ = INPUT$(1): CLS : SCREEN 0: LOCATE 13, 15: PRINT "НИЧЬЯ": EXIT SUB
+IF kom = 0 THEN BEEP: s$ = INPUT$(1): CLS : SCREEN 0: LOCATE 13, 15: PRINT "Вы победили": EXIT SUB
+IF kok = 0 THEN : SOUND 2000, 3: SOUND 500, 3: SOUND 1500, 3: SOUND 500, 3: s$ = INPUT$(1): CLS : SCREEN 0: LOCATE 13, 15: PRINT "я победил": EXIT SUB
+
+GOTO w:
+END SUB
+
+SUB hod
+i:
+c = 0
+SELECT CASE re
+CASE 1
+CALL hod1(nom, e)
+CASE 2
+CALL hod2(nom, e)
+CASE ELSE
+END SELECT
+
+SELECT CASE e
+CASE 1
+IF fvv = ko(nom, 1) THEN l = 2: poz = 1 ELSE l = 1: poz = 2
+fvv = ko(nom, l)
+ qv = qv + 1
+SELECT CASE v(qv)
+ CASE 1
+ CALL fiv(xv(qv), yv(qv), ko(nom, poz), ko(nom, l))
+ CASE 2
+ CALL fiv(xv(qv), yv(qv), ko(nom, l), ko(nom, poz))
+ CASE 3
+ CALL fig(xv(qv), yv(qv), ko(nom, poz), ko(nom, l))
+ CASE 4
+ CALL fig(xv(qv), yv(qv), ko(nom, l), ko(nom, poz))
+CASE ELSE
+END SELECT
+CASE 2
+IF fvn = ko(nom, 1) THEN l = 2: poz = 1 ELSE l = 1: poz = 2
+fvn = ko(nom, l)
+ qn = qn + 1
+ SELECT CASE n(qn)
+ CASE 1
+ CALL fiv(xn(qn), yn(qn), ko(nom, poz), ko(nom, l))
+ CASE 2
+ CALL fiv(xn(qn), yn(qn), ko(nom, l), ko(nom, poz))
+ CASE 3
+ CALL fig(xn(qn), yn(qn), ko(nom, poz), ko(nom, l))
+ CASE 4
+ CALL fig(xn(qn), yn(qn), ko(nom, l), ko(nom, poz))
+CASE ELSE
+END SELECT
+CASE 0
+post:
+IF kob = 0 THEN en = 1: EXIT SUB
+
+kok = kok + 1
+ko(kok, 1) = ba(kob, 1): ko(kok, 2) = ba(kob, 2)
+kob = kob - 1
+IF ko(kok, 1) <> fvv AND ko(kok, 1) <> fvn AND ko(kok, 2) <> fvv AND ko(kok, 2) <> fvn THEN GOTO post
+
+c = 1
+CASE ELSE
+END SELECT
+IF m = 1 THEN GOTO x:
+IF c = 1 THEN GOTO i
+kok = kok - 1
+IF kok + 1 = nom THEN GOTO kon1
+FOR i = nom TO kok
+ko(i, 1) = ko(i + 1, 1): ko(i, 2) = ko(i + 1, 2)
+NEXT i
+kon1:
+x:
+FOR i = 0 TO 35
+LINE (0, i)-(320, i), 0
+NEXT i
+FOR i = 0 TO kok * 21 - 21 STEP 21
+CALL fivp(i, 0)
+NEXT i
+
+END SUB
+
+SUB hod1 (i, e)
+FOR i = 1 TO kok
+IF ko(i, 1) = fvv OR ko(i, 2) = fvv THEN e = 1: EXIT FOR
+IF ko(i, 1) = fvn OR ko(i, 2) = fvn THEN e = 2: EXIT FOR
+NEXT
+END SUB
+
+SUB hod2 (i, e)
+DIM a(1 TO kok * 2, 1 TO 2)
+FOR i = 1 TO kok
+IF ko(i, 1) = fvv OR ko(i, 2) = fvv THEN w = w + 1: a(w, 1) = i: a(w, 2) = 1
+IF ko(i, 1) = fvn OR ko(i, 2) = fvn THEN w = w + 1: a(w, 1) = i: a(w, 2) = 2
+NEXT
+SELECT CASE w
+CASE 1
+i = a(1, 1)
+e = a(1, 2)
+EXIT SUB
+CASE 0
+i = 0: e = 0
+EXIT SUB
+CASE ELSE
+END SELECT
+a = a(1, 1): a1 = a(1, 2)
+
+FOR t = 1 TO w
+IF a(t, 2) = 1 THEN s = 2 ELSE s = 1
+FOR i1 = 1 TO kok
+IF i1 = a(t, 1) THEN GOTO s
+IF ko(i1, 1) = ko(a(t, 1), s) OR ko(i1, 2) = ko(a(t, 1), s) THEN i = a(t, 1): e = a(t, 2): EXIT SUB
+s:
+NEXT
+NEXT
+i = a: e = a1
+
+END SUB
+
+SUB pri
+FOR i = 151 TO 200
+LINE (0, i)-(320, i), 0
+NEXT i
+FOR i = 0 TO kom * 21 - 21 STEP 21
+r = r + 1
+CALL fiv(i, 159, me(r, 1), me(r, 2))
+NEXT i
+END SUB
+
+SUB srv (x)
+y = 199
+LINE (x, y)-(x, y - 5)
+LINE -(x - 1, y - 4)
+LINE (x, y - 5)-(x + 1, y - 4)
+END SUB
+
+SUB srvn (x)
+y = 156
+LINE (x, y - 5)-(x, y)
+LINE -(x - 1, y - 1)
+LINE (x, y)-(x + 1, y - 1)
+END SUB
+
+SUB v1 (x, y)
+LINE (x + 6, y + 6)-(x + 9, y + 9), , BF
+END SUB
+
+SUB v2 (x, y)
+LINE (x + 2, y + 2)-(x + 5, y + 5), , BF
+LINE (x + 10, y + 10)-(x + 13, y + 13), , BF
+END SUB
+
+SUB v3 (x, y)
+LINE (x + 2, y + 2)-(x + 4, y + 4), , BF
+LINE (x + 11, y + 11)-(x + 13, y + 13), , BF
+LINE (x + 6, y + 6)-(x + 9, y + 9), , BF
+END SUB
+
+SUB v4 (x, y)
+LINE (x + 2, y + 2)-(x + 4, y + 4), , BF
+LINE (x + 11, y + 11)-(x + 13, y + 13), , BF
+LINE (x + 2, y + 11)-(x + 4, y + 13), , BF
+LINE (x + 11, y + 2)-(x + 13, y + 4), , BF
+END SUB
+
+SUB v5 (x, y)
+LINE (x + 2, y + 2)-(x + 4, y + 4), , BF
+LINE (x + 11, y + 11)-(x + 13, y + 13), , BF
+LINE (x + 2, y + 11)-(x + 4, y + 13), , BF
+LINE (x + 11, y + 2)-(x + 13, y + 4), , BF
+LINE (x + 6, y + 6)-(x + 9, y + 9), , BF
+END SUB
+
+SUB v6 (x, y)
+LINE (x + 2, y + 2)-(x + 4, y + 4), , BF
+LINE (x + 11, y + 11)-(x + 13, y + 13), , BF
+LINE (x + 2, y + 11)-(x + 4, y + 13), , BF
+LINE (x + 11, y + 2)-(x + 13, y + 4), , BF
+
+LINE (x + 6, y + 2)-(x + 9, y + 4), , BF
+LINE (x + 6, y + 11)-(x + 9, y + 13), , BF
+END SUB
+
+SUB zapmen (nom, poz)
+CALL srv(8)
+'21
+t = -1
+b:
+DO
+DO
+DO: s$ = INKEY$: LOOP UNTIL s$ <> ""
+LOOP WHILE LEN(s$) = 1 AND s$ <> CHR$(13) AND s$ <> CHR$(27) AND s$ <> "-" AND s$ <> CHR$(9)
+s = ASC(RIGHT$(s$, 1))
+SELECT CASE s
+CASE 72
+t = -t
+CASE 80
+t = -t
+CASE 77
+IF x < kom - 1 THEN x = x + 1
+CASE 75
+IF x > 0 THEN x = x - 1
+CASE 45
+CLS
+en = 1: EXIT SUB
+CASE 9
+CLS : END
+CASE ELSE
+END SELECT
+FOR w = 194 TO 199
+LINE (0, w)-(300, w), 0
+LINE (0, w - 43)-(300, w - 43), 0
+NEXT
+
+IF t = -1 THEN CALL srv(8 + x * 21) ELSE CALL srvn(8 + x * 21)
+IF s = 27 AND kob > 0 THEN
+kom = kom + 1
+me(kom, 1) = ba(kob, 1): me(kom, 2) = ba(kob, 2)
+kob = kob - 1
+
+'************
+CALL pri
+
+IF t = 1 THEN srvn (8 + x * 21) ELSE srv (8 + x * 21)
+END IF
+LOOP UNTIL s = 13
+IF t = -1 THEN poz = 2 ELSE poz = 1
+IF me(x + 1, poz) <> fvv AND me(x + 1, poz) <> fvn THEN GOTO b:
+nom = x + 1
+END SUB
+
+SUB zaput (ba())
+FOR i = 1 TO 100
+t = INT(RND * 28 + 1)
+t1 = INT(28 * RND + 1)
+SWAP ba(t, 1), ba(t1, 1): SWAP ba(t, 2), ba(t1, 2)
+NEXT i
+END SUB
+
+SUB zast2
+SCREEN 0: WIDTH 40
+sv$ = "                                        Игровые клавиши :<ВВОД>-подтверждение выбора,<ESC>-базар,<СТРЕЛКИ>-выбор,<МИНУС>-рестарт                                                 "
+sn$ = "                                        Эту программу создал Зайцев.Д. в 1995 г.                                         Эту программу создал Зайцев.Д. в 1995 г.                "
+PRINT "╔═════════════════════════════════════╗"
+PRINT "║                HELP                 ║"
+PRINT "║ ┌─────────────────────────────────┐ ║"
+PRINT "║ │                                 │ ║"
+PRINT "║ └─────────────────────────────────┘ ║"
+PRINT "║                                     ║"
+PRINT "║                                     ║"
+PRINT "║    ╔══════════════════════════╗     ║"
+PRINT "║    ║      ВЫБОР ПАРТНЁРА      ║     ║"
+PRINT "║    ╠══════════════════════════╣     ║"
+PRINT "║    ║       Ч А Й Н И К        ║     ║"
+PRINT "║    ║                          ║     ║"
+PRINT "║    ║        П Р О Ф И         ║     ║"
+PRINT "║    ╟──────────────────────────╢     ║"
+PRINT "║    ║                          ║     ║"
+PRINT "║    ╚══════════════════════════╝     ║"
+PRINT "║                                     ║"
+PRINT "║                                     ║"
+PRINT "║ ┌─────────────────────────────────┐ ║"
+PRINT "║ │                                 │ ║"
+PRINT "║ └─────────────────────────────────┘ ║"
+PRINT "╚═════════════════════════════════════╝"
+e1$ = "      Ч А Й Н И К       "
+e2$ = "       П Р О Ф И        "
+re = 1
+LOCATE 11, 8: COLOR 0, 13: PRINT e1$
+LOCATE 15, 8: COLOR 15, 0: PRINT "Посредственный противник"
+q = TIMER
+DO
+
+DO: d$ = INKEY$:
+IF TIMER >= q + .2 THEN
+q = TIMER: w = w + 1
+LOCATE 4, 4: COLOR 14, 0: PRINT MID$(sv$, w, 33)
+LOCATE 20, 4: COLOR 14, 0: PRINT MID$(sn$, w, 33)
+END IF
+IF w > 135 THEN w = 1
+LOOP UNTIL d$ <> ""
+IF ASC(d$) = 13 THEN LOCATE 20, 5: COLOR 15, 0: PRINT "          Ж Д И Т Е !!!         ": EXIT SUB
+IF re = 1 THEN
+re = 2
+LOCATE 11, 8: COLOR 15, 0: PRINT e1$
+LOCATE 13, 8: COLOR 0, 13: PRINT e2$
+LOCATE 15, 8: COLOR 15, 0: PRINT "    Умный противник     "
+ELSE
+re = 1
+LOCATE 11, 8: COLOR 0, 13: PRINT e1$
+LOCATE 13, 8: COLOR 15, 0: PRINT e2$
+LOCATE 15, 8: COLOR 15, 0: PRINT "Посредственный противник"
+END IF
+LOOP
+END SUB
+
+SUB zastawka
+CALL fig(15, 15, 6, 3)
+CALL fiv(12, 30, 3, 0)
+CALL fiv(34, 30, 0, 5)
+LINE (0, 61)-(60, 61), 0
+LINE (0, 62)-(60, 62), 0
+LINE (0, 63)-(60, 63), 0
+CALL fig(0, 60, 6, 2)
+CALL fig(30, 60, 3, 5)
+
+CALL fig(70, 15, 1, 0)
+CALL fiv(67, 30, 2, 2)
+CALL fiv(89, 30, 1, 5)
+LINE (67, 61)-(104, 61), 0
+LINE (67, 62)-(103, 62), 0
+LINE (67, 63)-(102, 63), 0
+CALL fig(70, 60, 5, 5)
+
+CALL fig(120, 40, 6, 6)
+
+CALL fiv(50, 100, 4, 0)
+CALL fiv(50, 130, 2, 4)
+CALL fiv(85, 100, 4, 4)
+CALL fiv(85, 130, 1, 6)
+LINE (68, 110)-(76, 140)
+LINE -(85, 108)
+
+CALL fiv(120, 100, 3, 2)
+CALL fiv(120, 130, 4, 5)
+CALL fiv(155, 100, 2, 4)
+CALL fiv(155, 130, 2, 1)
+LINE (138, 155)-(155, 110)
+
+CALL fiv(190, 100, 1, 3)
+CALL fiv(190, 130, 1, 1)
+CALL fig(205, 123, 5, 6)
+LINE (236, 123)-(236, 143), 0
+LINE (237, 123)-(237, 143), 0
+LINE (238, 123)-(238, 143), 0
+CALL fiv(235, 100, 0, 2)
+CALL fiv(235, 130, 6, 4)
+
+CALL fig(270, 100, 4, 3)
+CALL fiv(267, 115, 3, 3)
+CALL fiv(289, 115, 6, 0)
+LINE (267, 146)-(304, 146), 0
+LINE (267, 147)-(305, 147), 0
+LINE (267, 148)-(306, 148), 0
+CALL fig(270, 145, 4, 1)
+LOCATE 1, 15: PRINT "VERSION 1.0"
+q$ = INPUT$(1)
+
+END SUB
