@@ -1,0 +1,160 @@
+10 CLS : WIDTH 40: OPTION BASE 0: DIM C%(4, 4): KEY OFF: LOCATE 1, 12: PRINT "Зайцев.Д  1994г"
+20 LOCATE 3, 12: PRINT "КРЕСТИКИ-НОЛИКИ"
+25 LOCATE 25, 1: PRINT "Нажмите {Пробел}"
+30 Q$ = INKEY$: IF Q$ = " " THEN 500
+40 W = ABS(1 + (RND(1) * 38))
+50 E = ABS(4 + (RND(1) * 19))
+60 W1 = ABS(1 + (RND(1) * 38))
+70 E1 = ABS(4 + (RND(1) * 19))
+100 LOCATE E, W: PRINT "X": LOCATE E1, W1: PRINT "O"
+110 GOTO 30
+500 CLS : WIDTH 40
+510 LOCATE 11, 13: PRINT "Кто начнёт играть?"
+520 LOCATE 13, 13: PRINT "1-ТЫ(чел),0-Я(ком)."
+523 LOCATE 15, 15: PRINT "ESC-Инструкция"
+530 S$ = INPUT$(1)
+540 H = VAL(S$): IF ASC(S$) = 27 THEN 10000
+541 IF H <> 1 THEN H = 0
+550 CLS : V$ = "╔═════╦═════╦═════╗"
+560   V1$ = "║     ║     ║     ║"
+570   V2$ = "╠═════╬═════╬═════╬"
+580   V3$ = "╚═════╩═════╩═════╝"
+590 LOCATE 5, 21: PRINT V$
+595 FOR V1 = 0 TO 2
+600 FOR V = 6 + V1 * 6 TO 10 + V1 * 6: LOCATE V, 21: PRINT V1$
+610 NEXT V
+620 IF V1 < 2 THEN LOCATE V, 21: PRINT V2$
+630 NEXT V1
+640 LOCATE 23, 21: PRINT V3$
+690 IF H = 1 THEN 2200
+890 '***********************************************
+900 X = 0: Y = 0: L = 0
+910 K1 = 0: K2 = 2
+920 SWAP K1, K2
+1000 FOR I = 1 TO 3
+1010 IF C%(I, 0) = K1 AND C%(I, 4) = K2 THEN L = I
+1020 NEXT I
+1030 IF L = 0 THEN 1070
+1040 FOR I1 = 1 TO 3
+1050 IF C%(L, I1) = 0 THEN X = L: Y = I1
+1060 NEXT I1: GOTO 1196
+1070 FOR I2 = 1 TO 3
+1080 IF C%(4, I2) = K1 AND C%(0, I2) = K2 THEN L = I2
+1090 NEXT I2
+1100 IF L = 0 THEN 1140
+1110 FOR I3 = 1 TO 3
+1120 IF C%(I3, L) = 0 THEN X = I3: Y = L
+1130 NEXT I3: GOTO 1196
+1140 IF C%(4, 0) <> K1 OR C%(0, 4) <> K2 THEN 1190
+1150 IF C%(1, 3) = 0 THEN X = 1: Y = 3
+1160 IF C%(2, 2) = 0 THEN X = 2: Y = 2
+1170 IF C%(3, 1) = 0 THEN X = 3: Y = 1
+1180 GOTO 1196
+1190 IF C%(4, 4) <> K1 OR C%(0, 0) <> K2 THEN 1198
+1191 FOR I4 = 1 TO 3: IF C%(I4, I4) = 0 THEN X = I4: Y = I4
+1192 NEXT I4
+1196 IF K1 = 2 THEN POB = 1
+1197 GOTO 1500
+1198 IF K1 = 2 THEN 920
+1200 IF C%(2, 2) = 0 THEN X = 2: Y = 2: GOTO 1500
+1210 IF N <> 3 OR H <> 1 THEN 1290
+1220 IF C%(1, 2) = 1 AND C%(3, 1) = 1 THEN X = 1: Y = 1
+1230 IF C%(1, 2) = 1 AND C%(3, 3) = 1 THEN X = 1: Y = 3
+1240 IF C%(1, 1) = 1 AND C%(2, 3) = 1 THEN X = 1: Y = 3
+1250 IF C%(2, 3) = 1 AND C%(3, 1) = 1 THEN X = 3: Y = 3
+1260 IF C%(1, 1) = 1 AND C%(3, 3) = 1 THEN X = 2: Y = 3
+1270 IF C%(3, 1) = 1 AND C%(1, 3) = 1 THEN X = 1: Y = 2
+1271 IF C%(1, 3) = 1 AND C%(3, 2) = 1 THEN X = 3: Y = 3
+1272 IF C%(2, 1) = 1 AND C%(3, 3) = 1 THEN X = 3: Y = 1
+1273 IF C%(2, 1) = 1 AND C%(1, 3) = 1 THEN X = 1: Y = 1
+1274 IF C%(1, 1) = 1 AND C%(3, 2) = 1 THEN X = 3: Y = 1
+1280 IF X > 0 THEN 1500
+1290 FOR I5 = 1 TO 3: IF C%(0, I5) = 0 THEN L = I5
+1300 NEXT I5
+1310 IF L = 0 THEN 1340
+1320 FOR I6 = 1 TO 3: IF C%(I6, L) = 0 THEN X = I6: Y = L
+1330 NEXT I6: GOTO 1500
+1340 FOR I7 = 1 TO 3: IF C%(I7, 4) = 0 THEN L = I7
+1350 NEXT I7
+1360 IF L = 0 THEN 1390
+1370 FOR I8 = 1 TO 3: IF C%(L, I8) = 0 THEN X = L: Y = I8
+1380 NEXT I8: GOTO 1500
+1390 IF C%(1, 2) = 0 THEN X = 1: Y = 2
+1400 IF C%(2, 1) = 0 THEN X = 2: Y = 1
+1410 IF C%(2, 3) = 0 THEN X = 2: Y = 3
+1420 IF C%(3, 2) = 0 THEN X = 3: Y = 2
+1430 IF X > 0 THEN 1500
+1440 FOR J = 1 TO 3 STEP 2
+1450 FOR J1 = 1 TO 3 STEP 2
+1460 PRINT J, J1: IF C%(J, J1) = 0 THEN X = J: Y = J1
+1470 NEXT J1, J
+1500  SOUND 1500, 5: C%(X, Y) = -1: X = 2 + 6 * X: Y = 17 + 6 * Y
+1510 LOCATE X - 1, Y: PRINT "╔═╗"
+1520 LOCATE X, Y: PRINT "║ ║"
+1530 LOCATE X + 1, Y: PRINT "╚═╝": GOTO 1610
+1560 C%(X, Y) = 1: X = 1 + 6 * X: Y = 17 + 6 * Y: LOCATE X, Y: PRINT "║ ║"
+1570 LOCATE X + 1, Y: PRINT " ║ "
+1580 LOCATE X + 2, Y: PRINT "║ ║"
+1610 FOR W = 0 TO 4: C%(0, W) = 0: C%(4, W) = 0: NEXT W: FOR W1 = 1 TO 3: C%(W1, 0) = 0: C%(W1, 4) = 0: NEXT W1: FOR J2 = 1 TO 3
+1620 FOR J3 = 1 TO 3
+1630 IF C%(J2, J3) = -1 THEN C%(J2, 0) = C%(J2, 0) + 1
+1640 IF C%(J2, J3) = 1 THEN C%(J2, 4) = C%(J2, 4) + 1
+1650 NEXT J3, J2
+1660 FOR J4 = 1 TO 3: FOR J5 = 1 TO 3
+1670 IF C%(J5, J4) = 1 THEN C%(0, J4) = C%(0, J4) + 1
+1680 IF C%(J5, J4) = -1 THEN C%(4, J4) = C%(4, J4) + 1
+1690 NEXT J5, J4
+1700 FOR J6 = 1 TO 3
+1710 IF C%(J6, J6) = 1 THEN C%(0, 0) = C%(0, 0) + 1
+1720 IF C%(J6, J6) = -1 THEN C%(4, 4) = C%(4, 4) + 1
+1730 NEXT J6
+1740 FOR J7 = 1 TO 3
+1750 IF C%(4 - J7, J7) = 1 THEN C%(0, 4) = C%(0, 4) + 1
+1760 IF C%(4 - J7, J7) = -1 THEN C%(4, 0) = C%(4, 0) + 1
+1770 NEXT J7
+1780 IF POB = 1 THEN 1960
+1790 N = N + 1: IF N = 9 THEN 2000
+1800 IF H <> 0 THEN 1830
+1810 J8 = N / 2: : IF J8 > INT(J8) THEN 2200
+1820 GOTO 900
+1830 J8 = N / 2: IF J8 > INT(J8) THEN 900
+1840 GOTO 2200
+1960 CLS : COLOR 23: LOCATE 12, 8: PRINT "Вы проиграли   ХА-ХА-ХА."
+1965 COLOR 7: LOCATE 23, 10: PRINT "Нажмите любую кавишу.": C$ = INPUT$(1)
+1970 CLS : COLOR 7: LOCATE 12, 12: PRINT "Сыграем ещё ?": C$ = INPUT$(1)
+1980 IF C$ = "н" OR C$ = "Н" OR C$ = "y" OR C$ = "Y" THEN SYSTEM
+1990 RUN 500
+2000 CLS : LOCATE 12, 12: PRINT "ничья,бывает же так!"
+2002 COLOR 7: LOCATE 23, 10: PRINT "Нажмите любую кавишу.": C$ = INPUT$(1): GOTO 1970
+2200 LOCATE 5, 1: PRINT "Куда пойдёте ?": X = 1: Y = 1: XZ = 1: YZ = 1: LOCATE 10, 26: PRINT "*"
+2202 SS$ = INPUT$(1): SS = ASC(SS$)
+2203 IF SS = 52 THEN Y = Y - 1
+2204 IF SS = 54 THEN Y = Y + 1
+2205 IF SS = 56 THEN X = X - 1
+2206 IF SS = 50 THEN X = X + 1
+2208 IF SS = 53 THEN 2223
+2209 IF SS <> 52 AND SS <> 54 AND SS <> 56 AND SS <> 50 AND SS <> 53 THEN 2202
+2210 IF X > 3 THEN X = 1
+2211 IF X < 1 THEN X = 3
+2212 IF Y > 3 THEN Y = 1
+2213 IF Y < 1 THEN Y = 3
+2214 LOCATE 4 + 6 * X, 20 + 6 * Y: PRINT "*"
+2215 LOCATE 4 + 6 * XZ, 20 + 6 * YZ: PRINT " "
+2217 XZ = X: YZ = Y
+2220 GOTO 2202
+2223 LOCATE 5, 1: PRINT "              ": LOCATE 4 + 6 * X, 20 + 6 * Y: PRINT " "
+2224 IF C%(X, Y) <> 0 THEN 2200
+2230 GOTO 1560
+10000 CLS : WIDTH 80
+10010 PRINT "                           Инструкция"
+10020 PRINT "   Эта программа создана в 1994 году Зайцевым.Д."
+10030 PRINT
+10040 PRINT "   Для того чтобы начать игру первым или уступить это право компьютеру вы "
+10050 PRINT "должны выбрать подходящий пункт в гавном меню"
+10060 PRINT "   Если право хода за вами то в углу верхней левой клетки появеться звездочка"
+10070 PRINT "Чтобы упровлять ею вам надо перевести правую цифровую клавиотуру в положение"
+10080 PRINT "цифр."
+10090 PRINT "Теперь вы можете перемещать звёздочку в любую клетку поля с помощю клавиш 8,4,6,2 на правой цифровой клавиотуре."
+10100 PRINT "Когда вы выбрали клетку на которую хотите поставить крестик нажмите 5"
+10110 PRINT "   Для выхода из игры вам нужно нажать клавишу {н} при запросе {Сыграем ещё}."
+10120 BN$ = INPUT$(1): WIDTH 40: GOTO 510
