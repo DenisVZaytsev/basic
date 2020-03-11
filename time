@@ -1,0 +1,308 @@
+DECLARE SUB s0 (x!, y!)
+DECLARE SUB s1 (x!, y!)
+DECLARE SUB s2 (x!, y!)
+DECLARE SUB s3 (x!, y!)
+DECLARE SUB s4 (x!, y!)
+DECLARE SUB s5 (x!, y!)
+DECLARE SUB s6 (x!, y!)
+DECLARE SUB s7 (x!, y!)
+DECLARE SUB s8 (x!, y!)
+DECLARE SUB s9 (x!, y!)
+DECLARE SUB t0 (x!, y!)
+DECLARE SUB t1 (x!, y!)
+DECLARE SUB t2 (x!, y!)
+DECLARE SUB t3 (x!, y!)
+DECLARE SUB t4 (x!, y!)
+DECLARE SUB t5 (x!, y!)
+DECLARE SUB t6 (x!, y!)
+DECLARE SUB t7 (x!, y!)
+DECLARE SUB t8 (x!, y!)
+DECLARE SUB t9 (x!, y!)
+DECLARE SUB veb (a$, n!)
+CLS
+LOCATE 25, 30: PRINT "Зайцев Д. 1994 г."
+LOCATE 1, 30: PRINT "Для выхода нажмите ESC"
+LOCATE 5, 39: PRINT "┌──┐"
+LOCATE 6, 39: PRINT "└──┘"
+LOCATE 9, 39: PRINT "┌──┐"
+LOCATE 10, 39: PRINT "└──┘"
+IF LEN(TIME$) < 8 THEN CLS : PRINT "Показания времени не соответствуют программе": END
+DO
+d$ = INKEY$
+v$ = TIME$
+IF vcopi$ = v$ THEN GOTO kon
+vcopi$ = v$
+e$ = MID$(v$, 1, 1): CALL veb(e$, 1)
+e$ = MID$(v$, 2, 1): CALL veb(e$, 2)
+e$ = MID$(v$, 4, 1): CALL veb(e$, 3)
+e$ = MID$(v$, 5, 1): CALL veb(e$, 4)
+e$ = MID$(v$, 7, 1): CALL veb(e$, 5)
+e$ = MID$(v$, 8, 1): CALL veb(e$, 6)
+kon:
+LOOP UNTIL d$ = CHR$(27)
+CLS
+
+SUB s0 (x, y)
+LOCATE x, y: PRINT "┌────────┐"
+LOCATE x + 1, y: PRINT "│ ┌────┐ │"
+LOCATE x + 2, y: PRINT "│ │    │ │"
+LOCATE x + 3, y: PRINT "│ │    │ │"
+LOCATE x + 4, y: PRINT "│ │    │ │"
+LOCATE x + 5, y: PRINT "│ └────┘ │"
+LOCATE x + 6, y: PRINT "└────────┘"
+END SUB
+
+SUB s1 (x, y)
+LOCATE x, y: PRINT " ┌────┐    "
+LOCATE x + 1, y: PRINT " └──┐ │   "
+LOCATE x + 2, y: PRINT "    │ │   "
+LOCATE x + 3, y: PRINT "    │ │   "
+LOCATE x + 4, y: PRINT "    │ │   "
+LOCATE x + 5, y: PRINT "┌───┘ └──┐"
+LOCATE x + 6, y: PRINT "└────────┘"
+END SUB
+
+SUB s2 (x, y)
+LOCATE x, y: PRINT "┌────────┐"
+LOCATE x + 1, y: PRINT "└──────┐ │"
+LOCATE x + 2, y: PRINT "┌──────┘ │"
+LOCATE x + 3, y: PRINT "│ ┌──────┘"
+LOCATE x + 4, y: PRINT "│ │       "
+LOCATE x + 5, y: PRINT "│ └──────┐"
+LOCATE x + 6, y: PRINT "└────────┘"
+END SUB
+
+SUB s3 (x, y)
+LOCATE x, y: PRINT "┌────────┐"
+LOCATE x + 1, y: PRINT "│┌─────┐ │"
+LOCATE x + 2, y: PRINT "└┘   ┌─┘ │"
+LOCATE x + 3, y: PRINT "     └─┐ │"
+LOCATE x + 4, y: PRINT "┌┐     │ │"
+LOCATE x + 5, y: PRINT "│└─────┘ │"
+LOCATE x + 6, y: PRINT "└────────┘"
+END SUB
+
+SUB s4 (x, y)
+LOCATE x, y: PRINT "┌─┐    ┌─┐"
+LOCATE x + 1, y: PRINT "│ │    │ │"
+LOCATE x + 2, y: PRINT "│ └────┘ │"
+LOCATE x + 3, y: PRINT "└──────┐ │"
+LOCATE x + 4, y: PRINT "       │ │"
+LOCATE x + 5, y: PRINT "       │ │"
+LOCATE x + 6, y: PRINT "       └─┘"
+END SUB
+
+SUB s5 (x, y)
+LOCATE x, y: PRINT "┌────────┐"
+LOCATE x + 1, y: PRINT "│ ┌──────┘"
+LOCATE x + 2, y: PRINT "│ └──────┐"
+LOCATE x + 3, y: PRINT "└──────┐ │"
+LOCATE x + 4, y: PRINT "       │ │"
+LOCATE x + 5, y: PRINT "┌──────┘ │"
+LOCATE x + 6, y: PRINT "└────────┘"
+END SUB
+
+SUB s6 (x, y)
+LOCATE x, y: PRINT "┌────────┐"
+LOCATE x + 1, y: PRINT "│ ┌──────┘"
+LOCATE x + 2, y: PRINT "│ └──────┐"
+LOCATE x + 3, y: PRINT "│ ┌────┐ │"
+LOCATE x + 4, y: PRINT "│ │    │ │"
+LOCATE x + 5, y: PRINT "│ └────┘ │"
+LOCATE x + 6, y: PRINT "└────────┘"
+END SUB
+
+SUB s7 (x, y)
+    LOCATE x, y: PRINT "┌────────┐"
+LOCATE x + 1, y: PRINT "└────┐  ┌┘"
+LOCATE x + 2, y: PRINT "    ┌┘ ┌┘ "
+LOCATE x + 3, y: PRINT "    │ ┌┘  "
+LOCATE x + 4, y: PRINT "    │ │   "
+LOCATE x + 5, y: PRINT "    │ │   "
+LOCATE x + 6, y: PRINT "    └─┘   "
+END SUB
+
+SUB s8 (x, y)
+LOCATE x, y: PRINT "┌────────┐"
+LOCATE x + 1, y: PRINT "│ ┌────┐ │"
+LOCATE x + 2, y: PRINT "│ └────┘ │"
+LOCATE x + 3, y: PRINT "│ ┌────┐ │"
+LOCATE x + 4, y: PRINT "│ │    │ │"
+LOCATE x + 5, y: PRINT "│ └────┘ │"
+LOCATE x + 6, y: PRINT "└────────┘"
+END SUB
+
+SUB s9 (x, y)
+LOCATE x, y: PRINT "┌────────┐"
+LOCATE x + 1, y: PRINT "│ ┌────┐ │"
+LOCATE x + 2, y: PRINT "│ └────┘ │"
+LOCATE x + 3, y: PRINT "└──────┐ │"
+LOCATE x + 4, y: PRINT "       │ │"
+LOCATE x + 5, y: PRINT "┌──────┘ │"
+LOCATE x + 6, y: PRINT "└────────┘"
+END SUB
+
+SUB t0 (x, y)
+LOCATE x, y: PRINT "┌─────────────┐"
+LOCATE x + 1, y: PRINT "│ ┌─────────┐ │"
+LOCATE x + 2, y: PRINT "│ │         │ │"
+LOCATE x + 3, y: PRINT "│ │         │ │"
+LOCATE x + 4, y: PRINT "│ │         │ │"
+LOCATE x + 5, y: PRINT "│ │         │ │"
+LOCATE x + 6, y: PRINT "│ │         │ │"
+LOCATE x + 7, y: PRINT "│ │         │ │"
+LOCATE x + 8, y: PRINT "│ │         │ │"
+LOCATE x + 9, y: PRINT "│ └─────────┘ │"
+LOCATE x + 10, y: PRINT "└─────────────┘"
+
+END SUB
+
+SUB t1 (x, y)
+LOCATE x, y: PRINT " ┌──────┐      "
+LOCATE x + 1, y: PRINT " └────┐ │      "
+LOCATE x + 2, y: PRINT "      │ │      "
+LOCATE x + 3, y: PRINT "      │ │       "
+LOCATE x + 4, y: PRINT "      │ │       "
+LOCATE x + 5, y: PRINT "      │ │       "
+LOCATE x + 6, y: PRINT "      │ │       "
+LOCATE x + 7, y: PRINT "      │ │       "
+LOCATE x + 8, y: PRINT "      │ │       "
+LOCATE x + 9, y: PRINT "┌─────┘ └─────┐"
+LOCATE x + 10, y: PRINT "└─────────────┘"
+
+END SUB
+
+SUB t2 (x, y)
+LOCATE x, y: PRINT "┌─────────────┐"
+LOCATE x + 1, y: PRINT "│ ┌─────────┐ │"
+LOCATE x + 2, y: PRINT "│ │        ┌┘ │"
+LOCATE x + 3, y: PRINT "└─┘      ┌─┘┌─┘"
+LOCATE x + 4, y: PRINT "       ┌─┘┌─┘  "
+LOCATE x + 5, y: PRINT "     ┌─┘┌─┘    "
+LOCATE x + 6, y: PRINT "   ┌─┘┌─┘      "
+LOCATE x + 7, y: PRINT " ┌─┘┌─┘        "
+LOCATE x + 8, y: PRINT "┌┘ ┌┘          "
+LOCATE x + 9, y: PRINT "│  └──────────┐"
+LOCATE x + 10, y: PRINT "└─────────────┘"
+END SUB
+
+SUB t3 (x, y)
+LOCATE x, y: PRINT "┌─────────────┐"
+LOCATE x + 1, y: PRINT "│ ┌─────────┐ │"
+LOCATE x + 2, y: PRINT "└─┘         │ │"
+LOCATE x + 3, y: PRINT "            │ │"
+LOCATE x + 4, y: PRINT "     ┌──────┘ │"
+LOCATE x + 5, y: PRINT "     └──────┐ │"
+LOCATE x + 6, y: PRINT "            │ │"
+LOCATE x + 7, y: PRINT "            │ │"
+LOCATE x + 8, y: PRINT "┌─┐         │ │"
+LOCATE x + 9, y: PRINT "│ └─────────┘ │"
+LOCATE x + 10, y: PRINT "└─────────────┘"
+END SUB
+
+SUB t4 (x, y)
+LOCATE x, y: PRINT "┌─┐         ┌─┐"
+LOCATE x + 1, y: PRINT "│ │         │ │"
+LOCATE x + 2, y: PRINT "│ │         │ │"
+LOCATE x + 3, y: PRINT "│ │         │ │"
+LOCATE x + 4, y: PRINT "│ └─────────┘ │"
+LOCATE x + 5, y: PRINT "└───────────┐ │"
+LOCATE x + 6, y: PRINT "            │ │"
+LOCATE x + 7, y: PRINT "            │ │"
+LOCATE x + 8, y: PRINT "            │ │"
+LOCATE x + 9, y: PRINT "            │ │"
+LOCATE x + 10, y: PRINT "            └─┘"
+END SUB
+
+SUB t5 (x, y)
+LOCATE x, y: PRINT "┌─────────────┐"
+LOCATE x + 1, y: PRINT "│ ┌───────────┘"
+LOCATE x + 2, y: PRINT "│ │             "
+LOCATE x + 3, y: PRINT "│ │             "
+LOCATE x + 4, y: PRINT "│ └───────────┐"
+LOCATE x + 5, y: PRINT "└───────────┐ │"
+LOCATE x + 6, y: PRINT "            │ │"
+LOCATE x + 7, y: PRINT "            │ │"
+LOCATE x + 8, y: PRINT "            │ │"
+LOCATE x + 9, y: PRINT "┌───────────┘ │"
+LOCATE x + 10, y: PRINT "└─────────────┘"
+END SUB
+
+SUB t6 (x, y)
+LOCATE x, y: PRINT "┌─────────────┐"
+LOCATE x + 1, y: PRINT "│ ┌───────────┘"
+LOCATE x + 2, y: PRINT "│ │             "
+LOCATE x + 3, y: PRINT "│ │             "
+LOCATE x + 4, y: PRINT "│ └───────────┐"
+LOCATE x + 5, y: PRINT "│ ┌─────────┐ │"
+LOCATE x + 6, y: PRINT "│ │         │ │"
+LOCATE x + 7, y: PRINT "│ │         │ │"
+LOCATE x + 8, y: PRINT "│ │         │ │"
+LOCATE x + 9, y: PRINT "│ └─────────┘ │"
+LOCATE x + 10, y: PRINT "└─────────────┘"
+END SUB
+
+SUB t7 (x, y)
+LOCATE x, y: PRINT "┌─────────────┐"
+LOCATE x + 1, y: PRINT "│ ┌─────────┐ │"
+LOCATE x + 2, y: PRINT "└─┘        ┌┘┌┘"
+LOCATE x + 3, y: PRINT "         ┌─┘┌┘ "
+LOCATE x + 4, y: PRINT "       ┌─┘┌─┘  "
+LOCATE x + 5, y: PRINT "      ┌┘ ┌┘    "
+LOCATE x + 6, y: PRINT "      │ ┌┘     "
+LOCATE x + 7, y: PRINT "      │ │      "
+LOCATE x + 8, y: PRINT "      │ │      "
+LOCATE x + 9, y: PRINT "      │ │      "
+LOCATE x + 10, y: PRINT "      └─┘      "
+END SUB
+
+SUB t8 (x, y)
+LOCATE x, y: PRINT "┌─────────────┐"
+LOCATE x + 1, y: PRINT "│ ┌─────────┐ │"
+LOCATE x + 2, y: PRINT "│ │         │ │"
+LOCATE x + 3, y: PRINT "│ │         │ │"
+LOCATE x + 4, y: PRINT "│ └─────────┘ │"
+LOCATE x + 5, y: PRINT "│ ┌─────────┐ │"
+LOCATE x + 6, y: PRINT "│ │         │ │"
+LOCATE x + 7, y: PRINT "│ │         │ │"
+LOCATE x + 8, y: PRINT "│ │         │ │"
+LOCATE x + 9, y: PRINT "│ └─────────┘ │"
+LOCATE x + 10, y: PRINT "└─────────────┘"
+END SUB
+
+SUB t9 (x, y)
+LOCATE x, y: PRINT "┌─────────────┐"
+LOCATE x + 1, y: PRINT "│ ┌─────────┐ │"
+LOCATE x + 2, y: PRINT "│ │         │ │"
+LOCATE x + 3, y: PRINT "│ │         │ │"
+LOCATE x + 4, y: PRINT "│ │         │ │"
+LOCATE x + 5, y: PRINT "│ └─────────┘ │"
+LOCATE x + 6, y: PRINT "└───────────┐ │"
+LOCATE x + 7, y: PRINT "            │ │"
+LOCATE x + 8, y: PRINT "┌─┐         │ │"
+LOCATE x + 9, y: PRINT "│ └─────────┘ │"
+LOCATE x + 10, y: PRINT "└─────────────┘"
+END SUB
+
+SUB veb (a$, n)
+SELECT CASE n
+CASE 1:  y = 6: x = 2: r = 2
+CASE 2: y = 23: x = 2: r = 2
+CASE 3: y = 44: x = 2: r = 2
+CASE 4: y = 61: x = 2: r = 2
+CASE 5: x = 14: y = 28: r = 1
+CASE 6: x = 14: y = 41: r = 1
+END SELECT
+SELECT CASE VAL(a$)
+CASE 0: IF r = 2 THEN CALL t0(x, y):   ELSE CALL s0(x, y)
+CASE 1: IF r = 2 THEN CALL t1(x, y):   ELSE CALL s1(x, y)
+CASE 2: IF r = 2 THEN CALL t2(x, y):   ELSE CALL s2(x, y)
+CASE 3: IF r = 2 THEN CALL t3(x, y):   ELSE CALL s3(x, y)
+CASE 4: IF r = 2 THEN CALL t4(x, y):   ELSE CALL s4(x, y)
+CASE 5: IF r = 2 THEN CALL t5(x, y):   ELSE CALL s5(x, y)
+CASE 6: IF r = 2 THEN CALL t6(x, y):   ELSE CALL s6(x, y)
+CASE 7: IF r = 2 THEN CALL t7(x, y):   ELSE CALL s7(x, y)
+CASE 8: IF r = 2 THEN CALL t8(x, y):   ELSE CALL s8(x, y)
+CASE 9: IF r = 2 THEN CALL t9(x, y):   ELSE CALL s9(x, y)
+END SELECT
+END SUB
